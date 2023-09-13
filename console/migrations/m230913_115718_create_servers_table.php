@@ -14,7 +14,7 @@ class m230913_115718_create_servers_table extends Migration
     {
         $this->createTable('{{%servers}}', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(12)->notNull(),
+            'name' => $this->string(12)->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ]);

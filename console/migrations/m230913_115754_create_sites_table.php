@@ -14,7 +14,7 @@ class m230913_115754_create_sites_table extends Migration
     {
         $this->createTable('{{%sites}}', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(12)->notNull(),
+            'name' => $this->string(12)->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
             'domain_id' => $this->integer(),
