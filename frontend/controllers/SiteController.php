@@ -12,6 +12,7 @@ use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use dektrium\user\filters\AccessRule;
 
 /**
  * Site controller
@@ -26,15 +27,13 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['login', 'error'],
                         'allow' => true,
-                        'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

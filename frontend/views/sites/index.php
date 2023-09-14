@@ -17,9 +17,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php if (\Yii::$app->user->can('admin')) { ?>
     <p>
         <?= Html::a('Добавить сайты', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    <?php } ?>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
@@ -53,7 +55,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Sites $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                }
+                },
+                'visible' => Yii::$app->user->can('admin'),
             ],
         ],
     ]); ?>

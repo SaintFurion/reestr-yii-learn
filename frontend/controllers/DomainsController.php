@@ -7,6 +7,8 @@ use frontend\models\DomainsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+use dektrium\user\filters\AccessRule;
 
 /**
  * DomainsController implements the CRUD actions for Domains model.
@@ -21,6 +23,26 @@ class DomainsController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'actions' => ['login', 'signup'],
+                            'roles' => ['?'],
+                        ],
+                        [
+                            'actions' => ['logout', 'index', 'view', 'search'],
+                            'allow' => true,
+                            'roles' => ['@'],
+                        ],
+                        [
+                            'actions' => ['create', 'update', 'delete'],
+                            'allow' => true,
+                            'roles' => ['admin'],
+                        ],
+                    ],
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
